@@ -1,0 +1,6 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile } from '../data/profile';
+const hasCV = Object.keys(import.meta.glob('/public/cv.pdf')).length > 0;
+---
+<Layout title="Curriculum vitae"><section class="wrap page-intro"><p class="eyebrow">Background & experience</p><h1>Curriculum vitae</h1><p>{profile.name}<br/>{profile.affiliation}</p>{hasCV ? <a class="button" href={`${import.meta.env.BASE_URL}cv.pdf`}>Download CV (PDF) ↓</a> : <p class="notice">Add <code>cv.pdf</code> to the <code>public/</code> folder and rebuild to enable the download.</p>}</section><section class="wrap section prose"><h2>Education</h2><p>Add your degrees, institutions, and graduation years.</p><h2>Appointments</h2><p>Add your academic positions.</p><h2>Invited talks & service</h2><p>Add selected talks, conference organization, and academic service.</p></section></Layout>

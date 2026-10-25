@@ -1,0 +1,6 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('research')).sort((a,b) => a.data.order-b.data.order);
+---
+<Layout title="Research"><section class="wrap page-intro"><p class="eyebrow">Questions & connections</p><h1>Research</h1><p>Exploring geometric structures, topological invariants, and analytical methods. These example projects show how you can present your work.</p></section><section class="wrap research-grid section">{projects.map((p,i) => <a class="research-card" href={`${import.meta.env.BASE_URL}research/${p.id}/`}><span class="card-top">0{i+1}<span>↗</span></span><p class="eyebrow">{p.data.area}</p><h2>{p.data.title}</h2><p>{p.data.description}</p></a>)}</section></Layout>

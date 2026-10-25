@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import publications from '../../data/publications.html?raw';
+---
+<Layout title="Publications" description="Publications by Osman Yürekli, including articles, book chapters, and collaborative work.">
+  <section class="wrap page-intro"><h1>Publications</h1></section>
+  <section class="wrap publication-archive">
+    <div class="publication-citations" set:html={publications} />
+    <p class="publication-source">Publication list reproduced from my <a href="https://www.ithaca.edu/faculty/yurekli/publications">Ithaca College faculty page ↗</a>.</p>
+  </section>
+</Layout>

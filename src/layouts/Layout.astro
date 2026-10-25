@@ -1,0 +1,14 @@
+---
+import { profile } from '../data/profile';
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+const { title = profile.name, description = profile.bio } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const links = [['Research', 'research/'], ['Publications', 'publications/'], ['Teaching', 'teaching/'], ['CV', 'cv/']];
+---
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><meta name="theme-color" content="#f7f5ef"/><title>{title === profile.name ? `${profile.name} — Mathematician` : `${title} — ${profile.name}`}</title><link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml"/></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="template-note">PERSONAL WEBSITE TEMPLATE <span>Illustrative content · replace with your own details</span></div>
+<header class="site-header wrap"><a class="wordmark" href={base}>{profile.name}<span> / {profile.role}</span></a><nav aria-label="Main navigation">{links.map(([label, path]) => <a href={`${base}${path}`} aria-current={Astro.url.pathname.startsWith(`${base}${path}`) ? 'page' : undefined}>{label}</a>)}</nav></header>
+<main id="main"><slot/></main>
+<footer class="wrap"><div><a class="wordmark" href={base}>{profile.name}</a><p>{profile.affiliation}</p></div><a href={`mailto:${profile.email}`}>Get in touch ↗</a><small>© {new Date().getFullYear()} {profile.name}</small></footer></body></html>
